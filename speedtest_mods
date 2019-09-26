@@ -1,0 +1,46 @@
+Add an arugment for file name
+
+## LINE 552
+    add     args.filename
+
+## Line 570
+
+    if exist (args.filename)
+        open(filename, forwriting, append)
+        check for first line headers (??) to make sure the file structure is correct
+            DATE    TIME    SOURCE  HOST    DISTANCE    PING(ms)    DOWNLOAD    UPLOAD
+        
+    else
+        create file
+        open file, forwriting
+        write first line (headers)
+            DATE    TIME    SOURCE  HOST    DISTANCE    PING(ms)    DOWNLOAD    UPLOAD
+
+    ## DATE AND TIME OF TEST
+    filestring = date \t time \t
+
+## Line 603
+    ## SOURCE
+    filestring += %(isp)s (%(ip)s) \t
+
+## Line 669
+    ## HOST
+    filestring += %(sponsor)s (%(name)s) \t
+
+    ## DISTANCE
+    filestring += [%(d)0.2f km]
+    
+    ## PING(ms)
+    filestring +=  '%(latency)s ms' \t
+    
+## Line 690
+    ## DOWNLOAD
+    filestring +=  'Download: %0.2f M%s/s' % ((dlspeed / 1000 / 1000) * args.units[1], args.units[0]) \t
+    
+## Line 702
+    ## UPLOAD
+    filestring +=  'Upload: %0.2f M%s/s' % ((ulspeed / 1000 / 1000) * args.units[1], args.units[0])) \n
+
+## Line 705
+    Write filestring to file
+    close file

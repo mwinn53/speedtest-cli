@@ -1,0 +1,46 @@
+### Desired output
+
+
+CSV file:   
+
+Date, Time, Host, Server(City/State), Distance, ping(ms), Download(MBps), Upload(MBps)
+
+
+Add arguments:
+
+   --log:   logfile
+   
+Algorithm:
+
+    If NOT exist (logfile)
+        Create logfile
+        Add header
+    Else
+        Open logfile (append)
+    
+    Output Date / Time
+    
+    Output Host
+    
+    Output Server (City, State)
+    
+    Output Distance
+    
+    Output ping
+    
+    Output download
+    
+    Output upload
+    
+    save/close file
+    
+    
+Create a cron job to run daily at four hour intervals
+    0400 0800 1200 1600 2000 0000
+    
+    00 00,04,08,12,16,20 * * * python /home/jetbradley/Documents/speedtest-cli/speedtest_cli.py --file /home/jetbradley/Documents/speedtest-cli/sptestresults.txt
+
+    
+Send a syslog message?
+
+Send the output file?
